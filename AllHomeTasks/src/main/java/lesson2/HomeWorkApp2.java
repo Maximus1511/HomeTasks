@@ -19,7 +19,7 @@ public class HomeWorkApp2 {
         IsLeapYear(1907);
         IsLeapYear(1912);
         IsLeapYear(2000);
-        System.out.println(IsLeapYear(2020)); //this string is just for check method IsLeapYear works good
+        //System.out.println(IsLeapYear(2020)); //this string is just for check method IsLeapYear works good
     }
 
     private static boolean CompareTwoNumbers(int a, int b) {
@@ -52,15 +52,15 @@ public class HomeWorkApp2 {
         }
     }
 
-    private static void IsLeapYear(int year) {
+    private static boolean IsLeapYear(int year) {
         if (year % 4 == 0)   {
             if (year % 400 == 0){
-                System.out.println("Year " + year + " is leap");
+                return(true);
             } else if (year % 100 == 0) {
-                System.out.println("Year " + year + " is NOT leap");
+                return(false);
             }
-            else System.out.println("Year " + year + " is leap");
-        } else System.out.println("Year " + year + " is NOT leap");
+            else return (true);
+        } else return(false);
 
     }
 }
