@@ -48,9 +48,8 @@ public class HomeWorkApp3 {
 
         //Exercise 8
         int[] Arr8 = new int[]{1, 2, 3, 4, 5, 6, 7};
-        int Shift = 2;
-        //ShiftArray(Shift, Arr8);
-
+        int Shift = -2;
+        System.out.println(Arrays.toString(DoShift(Shift, Arr8)));
     }
 
     private static int[] ChangeZero(int arr[]) {
@@ -145,11 +144,37 @@ public class HomeWorkApp3 {
         return (false);
     }
 
-    private static int[] ShiftArray(int shift, int[] arr) {
+    private static int[] RightShiftArray(int shift, int[] arr) {
         int N = shift % arr.length;
         for (int i = 0; i < N; i++) {
-                
+            int temp = 0;
+            temp = arr[arr.length - 1];
+            for (int j = arr.length - 1; j > 0; j--) {
+                arr[j] =  arr[j - 1];
+            }
+            arr[0] = temp;
         }
         return (arr);
+    }
+
+    private static int [] LeftShiftArray(int shift, int [] arr) {
+        int N = shift % arr.length;
+        for (int i = 0; i < N; i++) {
+            int temp = 0;
+            temp = arr[0];
+            for (int j = 0; j < arr.length-1; j++) {
+                arr[j] =  arr[j + 1];
+            }
+            arr[arr.length - 1] = temp;
+        }
+        return (arr);
+    }
+
+    private static int [] DoShift(int Shift, int [] arr) {
+        if (Shift > 0){
+            RightShiftArray(Shift, arr);
+        }
+        else LeftShiftArray(Math.abs(Shift), arr);
+        return(arr);
     }
 }
