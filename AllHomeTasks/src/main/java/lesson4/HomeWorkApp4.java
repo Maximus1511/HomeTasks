@@ -11,40 +11,55 @@ public class HomeWorkApp4 {
     public static final Character COMPUTER_SIGN = '0';
     public static final Character EMPTY_SIGN = '-';
     public static final Character CORNER_SIGN = '&';
-    public static Scanner in = new Scanner(System.in);//to interact with user use console
-    public static Random random = new Random();// to generate random number
+
+    public static Scanner in = new Scanner(System.in);// for interact with user use console
+    public static Random random = new Random();// for generate random number
     private final static char[][] MAP = new char[SIZE][SIZE];
 
     public static int moveCounter = 0;
-    private static boolean isHumanWinner;
+    public static int lastRowNumber = 0;
+    public static int lastColumnNumber = 0;
+
+    private static boolean isPlayerWinner;
 
 
     public static void main(String[] args) {
 
         System.out.println("Hello!");
-        InitMap(MAP);
-        drawMap(MAP);
-        Game();
-
-        /*do{
+        /*InitMap(MAP);
+        /drawMap(MAP);
+        game();
+        closeGame();*/
+        do {
             System.out.println("Lets start...");
             InitMap(MAP);
-            DrawMap(MAP);
-            Game();
-        } while (!oneMoreGame());
-         closeGame();*/
+            drawMap(MAP);
+            game();
+        } while (oneMoreGame());
+        closeGame();
     }
 
-    public static void Game() {
+    public static void game() {
         while (anyEnableCells()) {
             humanMove(MAP);
-            //isWinner();
-            anyEnableCells();
             drawMap(MAP);
-            //computerMove(MAP);
-            //DrawMap(MAP);
-            //isWinner();
-            //anyEnableCells();
+            if (isWinner(HUMAN_SIGN)) {// is human winner?
+                System.out.println("Winner is human");
+                break;
+            }
+            if (anyEnableCells() == false) {//do we have cells for next move?
+                break;
+            }
+            //computer move
+            computerMove(MAP);
+            drawMap(MAP);
+            if (isWinner(COMPUTER_SIGN)) {// is computer winner?
+                System.out.println("Winner is computer");
+                break;
+            }
+            if (anyEnableCells() == false) {//do we have cells for next move?
+                break;
+            }
         }
     }
 
@@ -54,23 +69,45 @@ public class HomeWorkApp4 {
     }
 
     private static boolean oneMoreGame() {
-        return (false);
+        System.out.println("Do you want play again? Yes / No");
+        String str = in.next();
+        if (str.equals("Yes")) {//ATTENTION! string comparison without "==", use equals method!lost 10 min
+            moveCounter = 0;
+            return (true);
+        } else return (false);
     }
 
-    public static void printGameResults(boolean isDraW) {
-        String str = "";
-        if (isDraW){
-            System.out.println("Draw");
-        }else {
-        if (isHumanWinner) {
-            str = "Human";
-        } else str = "Computer";
-        System.out.println("Winner is " + str);
+    private static boolean isWinner(char sign) {//don't check diagonals
+        int winnerCounter = 0;
+        boolean vertical;
+        boolean horizontal;
+
+        //Check vertical lines
+        for (int i = 0; i < SIZE; i++) {//check vertical lines
+            if (MAP[i][lastColumnNumber] == sign) {
+                winnerCounter++;
+            } else {
+                winnerCounter = 0;
+                break;
+            }
         }
-    }
+        vertical = (winnerCounter == SIZE);
 
-    private static void isWinner() {
-        printGameResults(isHumanWinner);
+        //Check horizontal lines
+        winnerCounter = 0;
+        for (int i = 0; i < SIZE; i++) {
+            if (MAP[lastRowNumber][i] == sign) {
+                winnerCounter++;
+            } else {
+                winnerCounter = 0;
+                break;
+            }
+        }
+        horizontal = (winnerCounter == SIZE);
+
+        // do we have any lines?
+        isPlayerWinner = (horizontal || vertical);
+        return (isPlayerWinner);
     }
 
     private static char[][] computerMove(char[][] map) {
@@ -80,11 +117,13 @@ public class HomeWorkApp4 {
         do {
             columnNumber = random.nextInt(SIZE);
             rowNumber = random.nextInt(SIZE);
-        } while (!isCellAvailable(columnNumber, rowNumber));
+        } while (!isCellAvailable(rowNumber, columnNumber));
 
         MAP[rowNumber][columnNumber] = COMPUTER_SIGN;
-        moveCounter = moveCounter++;
-        System.out.println("\n");
+        lastColumnNumber = columnNumber;
+        lastRowNumber = rowNumber;
+
+        moveCounter = moveCounter + 1;
         return (MAP);
     }
 
@@ -101,8 +140,10 @@ public class HomeWorkApp4 {
         } while (!isCellAvailable(rowNumber, columnNumber));
 
         MAP[rowNumber][columnNumber] = HUMAN_SIGN;
+        lastColumnNumber = columnNumber;
+        lastRowNumber = rowNumber;
+
         moveCounter = moveCounter + 1;
-        System.out.println("moveCounter = " + moveCounter + "\n");
         return (MAP);
     }
 
@@ -110,13 +151,13 @@ public class HomeWorkApp4 {
         int n = -1;
         boolean needTip = false; //variable for print or not "out of range" message to user
         do {
-            if (in.hasNextInt()){ //is ineteger?
+            if (in.hasNextInt()) { //is ineteger?
                 n = in.nextInt();
                 needTip = true;
             } else {
                 System.out.println("Please, input integer number");
                 needTip = false;
-                in.next();// Reset in value, else there will be infinite cycle
+                in.next();// Reset "in" value, else there will be infinite cycle
             }
         } while (!isNumberValid(n, needTip));
         return (n);
@@ -131,7 +172,6 @@ public class HomeWorkApp4 {
         }
         return bool;
     }
-
 
     private static boolean isCellAvailable(int x, int y) {//is choosen cell available for your move?
         boolean bool = MAP[x][y] == EMPTY_SIGN;
@@ -159,8 +199,7 @@ public class HomeWorkApp4 {
     }
 
     private static char[][] drawMap(char[][] arr) {
-        //not perfect solution, but first of all, i'm trying launch it in general
-        //System.out.print(CORNER_SIGN + "\t");
+        //draw without any headers...First of all general understaning
         for (int i = 0; i < SIZE; i++) {
             //System.out.print(i + 1 + "\t");
         }
