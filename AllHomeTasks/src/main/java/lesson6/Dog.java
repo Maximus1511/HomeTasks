@@ -14,7 +14,7 @@ package lesson6;
             System.out.println("Dog " + this.name + " was created. Dog number is: " + incrAnimalCounter());
         }
 
-        //Methods
+        //Overriden methods
         private void setDistance(int distance){
             this.distance =  distance;
         }
@@ -23,11 +23,10 @@ package lesson6;
             return this.distance;
         }
 
-        //Overrided methods
+
         @Override
         protected void getRunLimit(){
             System.out.printf("%s: My run limit is %s meters%n",this.name, this.runLimit);
-            //return (this.runLimit);
         }
 
         @Override

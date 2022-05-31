@@ -10,21 +10,10 @@ public abstract class Animal {
     protected abstract void run (int distance);
     protected abstract void swim (int distance);
 
-    protected void getRunLimit() {
-        //return runLimit;
-    }
-
-    protected void setRunLimit(int runLimit) {
-        this.runLimit = runLimit;
-    }
-
-    public void getSwimLimit() {
-        //return swimLimit;
-    }
-
-    public void setSwimLimit(int swimLimit) {
-        this.swimLimit = swimLimit;
-    }
+    protected abstract void getRunLimit();
+    protected abstract void setRunLimit(int runLimit);
+    protected abstract void getSwimLimit();
+    protected abstract void setSwimLimit(int swimLimit);
 
     protected int incrAnimalCounter(){
         animalCounter =  animalCounter + 1;
