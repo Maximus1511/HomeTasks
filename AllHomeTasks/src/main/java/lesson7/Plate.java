@@ -26,7 +26,7 @@ public class Plate {
         foodCount = foodCount - catEatFoodCount;
     }
 
-    public void addFood(int addedFood) {
+    public void addFood(int addedFood) {//add food to plate
         foodCount =  foodCount + addedFood;
     }
 }
