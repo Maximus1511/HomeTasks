@@ -1,4 +1,4 @@
-package lesson6;
+package lesson4.lesson6;
 
 public class Cat extends Animal{
     private static int catCounter;

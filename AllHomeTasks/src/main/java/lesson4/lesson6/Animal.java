@@ -1,4 +1,4 @@
-package lesson6;
+package lesson4.lesson6;
 
 public abstract class Animal {
     protected int distance;

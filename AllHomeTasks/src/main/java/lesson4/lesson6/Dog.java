@@ -1,4 +1,4 @@
-package lesson6;
+package lesson4.lesson6;
 
     class Dog extends Animal {
         //Constructors
