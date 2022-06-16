@@ -1,11 +1,11 @@
-package lesson8;
+package lesson8.listeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ButtonListener implements ActionListener {
+public class ExitBtnListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("Fuck pressed");
+        System.exit(0);
     }
 }
