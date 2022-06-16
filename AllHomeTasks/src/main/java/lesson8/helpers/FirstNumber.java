@@ -5,7 +5,7 @@ public class FirstNumber {
         return number1;
     }
 
-    public void setNumber1(int number1) {
+    public void setNumber1(double number1) {
         this.number1 = number1;
     }
 

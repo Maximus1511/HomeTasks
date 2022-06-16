@@ -74,11 +74,11 @@ public class CalculateBtnListener implements ActionListener {
         }
         return(operator);
     }
-    public int findSecondNumber(JTextField input, String operator){
+    public double findSecondNumber(JTextField input, String operator){
         String inputStr =  input.getText();
         String number2;
         number2 = inputStr.substring(inputStr.indexOf(operator)+1);
-        int secondNumber = Integer.parseInt(number2);
+        double secondNumber = Double.parseDouble(number2);
         return(secondNumber);
     }
 }

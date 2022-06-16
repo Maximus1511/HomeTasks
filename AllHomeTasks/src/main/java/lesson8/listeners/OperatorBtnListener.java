@@ -35,7 +35,7 @@ public class OperatorBtnListener implements ActionListener {
         } else {
             operatorHelper.setChosenOperator(operator);
             String s1 = input.getText();
-            int i = Integer.parseInt(s1);
+            double i = Double.parseDouble(s1);
             firstNumber.setNumber1(i);
             //System.out.println("number1 = " + i); // for debug
             //System.out.println("now operator is " + operatorHelper.getChosenOperator()); //for debug

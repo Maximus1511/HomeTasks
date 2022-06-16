@@ -119,9 +119,15 @@ public class Calculator extends JFrame {
             btn.addActionListener(new DigitBtnListener(input));
             digitsPanel.add(btn);
         }
+
+        JButton btnDot  =  new NumberJButton(".");
+        btnDot.addActionListener(new DigitBtnListener(input));
+        digitsPanel.add(btnDot);
+
         JButton btn0  =  new NumberJButton("0");
         btn0.addActionListener(new DigitBtnListener(input));
         digitsPanel.add(btn0);
+
         return(digitsPanel);
     }
 

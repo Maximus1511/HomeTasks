@@ -5,5 +5,9 @@ public class HomeWorkApp8 {
         new Calculator("Calculator");
        /* String s =  "hejlh";
         System.out.println(s.contains("ass") | s.contains("popa"));*/
+
+       /* String s =  "123.5";
+        double a = Double.parseDouble(s);
+        System.out.println(a);*/
     }
 }
