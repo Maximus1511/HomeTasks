@@ -2,7 +2,7 @@ package Java2.lesson1;
 
 public class HomeTask2_1 {
     public static void main(String[] args) {
-        Participant robot = new Robot("R2D2",10, 100);
+        Participant robot = new Robot("R2D2",2, 100);
         Participant cat =  new Cat("Barsik", 7, 50);
 
         Obstacle wall = new Wall(5, "The Great Chinese Wall");
